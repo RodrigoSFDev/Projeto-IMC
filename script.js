@@ -1,17 +1,27 @@
-const peso = parseFloat(document.querySelector('#peso').value);
-const altura = parseFloat(document.querySelector('#altura').value);
+const peso = document.querySelector('#peso');
+const altura = document.querySelector('#altura');
 const btn = document.querySelector('#btn');
 const paragrafo = document.querySelector('#paragrafo');
 
-
+function limpaInput() {
+    peso.value = '';
+    altura.value = '';
+}
 const imc = () => {
+    const valorPeso = +peso.value.replace(',', '.');
+    const valorAltura = +altura.value.replace(',', '.');
     let resultado = 0;
-    if ( typeof peso !== 'number' || typeof altura !== 'number' ) {
-        paragrafo.innerHTML = 'Digite valores numéricos.'
+    if ( peso.value === '' || altura.value === '') {
+        paragrafo.innerHTML = 'Preencha todos os campos.';
     }
-    if (typeof peso === 'number' && typeof altura === 'number'){
-    resultado = peso / (altura ** 2);
+  
+    if (typeof valorPeso === 'number' && typeof valorAltura === 'number'){
+    resultado = (valorPeso / (valorAltura ** 2)).toFixed(2)
     paragrafo.innerHTML = `Seu IMC é ${resultado}`;
     };
+   
 };
-btn.addEventListener('click', imc);
+btn.addEventListener('click', () => {
+    imc();
+    limpaInput();
+});
