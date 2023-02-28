@@ -11,15 +11,14 @@ const imc = () => {
     const valorPeso = +peso.value.replace(',', '.');
     const valorAltura = +altura.value.replace(',', '.');
     let resultado = 0;
-    if ( peso.value === '' || altura.value === '') {
+    if (peso.value == '' || typeof altura.value == '') {
         paragrafo.innerHTML = 'Preencha todos os campos.';
-    }
-  
-    if (typeof valorPeso === 'number' && typeof valorAltura === 'number'){
-    resultado = (valorPeso / (valorAltura ** 2)).toFixed(2)
-    paragrafo.innerHTML = `Seu IMC é ${resultado}`;
-    };
-   
+     } else { 
+        resultado = (valorPeso / (valorAltura ** 2)).toFixed(2)
+        paragrafo.innerHTML = `Seu IMC é ${resultado}`;
+
+     }
+
 };
 btn.addEventListener('click', () => {
     imc();
